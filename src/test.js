@@ -2,14 +2,15 @@
 
 var h = require('virtual-dom/h');
 var extend = require('xtend');
-var toHTML = require('vdom-to-html');
-var compose = require(__dirname + '/compose.js');
+var R = require('ramda');
+var compose = R.compose;
 var isString = require('x-is-string')
 
 var atoms = {
   'button': {},
   'div': {},
-  'i': {}
+  'i': {},
+  'a': { href: '#' }
 };
 
 var views = {};
@@ -26,8 +27,8 @@ for (var a in atoms) {
   views[a] = node(a, atoms[a]);
 }
 
-
 // Semantic UI style
+/*
 var Button = views.button({ className: 'ui button' });
 var VisibleContent = views.div({ className: 'visible content' });
 var HiddenContent= views.div({ className: 'hidden content' });
@@ -35,12 +36,8 @@ var ShopIcon = views.i({ className: 'shop icon' });
 
 var AnimatedButton = compose(Button)
 
-// plain button
-console.log(toHTML(Button('Hello World')))
-
 // Semantic UI button
 var myButton = AnimatedButton([VisibleContent('Hello'), HiddenContent(ShopIcon())]);
+*/
 
-console.log(toHTML(myButton));
-
-module.exports = myButton;
+module.exports = views;
